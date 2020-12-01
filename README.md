@@ -4,3 +4,7 @@
 
 ### Basically the program asks the user to enter different types of words, then reads the sttory text from a file and subtitute the words with what the user entered
 
+
+
+
+
