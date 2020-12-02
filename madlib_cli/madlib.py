@@ -1,28 +1,47 @@
+from textwrap import dedent
+
 import re
 def welcome_messeg():
-    print('************************')
-    print('welcome to the madlib game')
-    print('here  i will aske you  to add specifice world then i will show you a text have your world in in diffrent places.')
-    print('enjoy with the game :)')
-    print('***********************')
+    print(dedent("""
+    ************************
+    welcome to the madlib game
+    here  i will aske you  to add specifice world then i will show you a text have your world in in diffrent places.
+    enjoy with the game :)
+    ************************
+    """))
+    # print('************************')
+    # print('welcome to the madlib game')
+    # print('here  i will aske you  to add specifice world then i will show you a text have your world in in diffrent places.')
+    # print('enjoy with the game :)')
+    # print('***********************')
 
 def read_template():
-    #read the file
+    """
+    This function reads a file in the same directory
+    """
     with open('assets/sample_template.txt', 'r') as file:
         content = file.read()
-        
-        return content
+    return content
+
 def parse(content):
-    # returns a string with language parts removed and a separate list of those language parts.
+    """
+    This function returns a string with language parts removed and a separate list of those language parts.
+    Input: a string with language parts
+    Outputs: 
+        1. a string without language parts
+        2. list of language parts
+    """
     parts=[]
-    string = re.findall(r'\{.*?\}',content)
-    text = re.sub("{[^}]*}", " {}", content)
+    string = re.findall(r'\{.*?\}',content) # find list of all words between {}
+    print(string)
+    text = re.sub("{[^}]*}", " {}", content) # removes the words in {}
+    print(text)
     for i in string:
         parts.append(i.strip("{ }"))
     return parts,text  
 
 def merge(text,word):
-#returns a string with the language parts inserted into the template
+    #returns a string with the language parts inserted into the template
     var = text.format(*word)
     return var
 
